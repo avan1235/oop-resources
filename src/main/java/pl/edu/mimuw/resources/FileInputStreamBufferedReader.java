@@ -6,42 +6,34 @@ import java.nio.file.Files;
 import java.util.Scanner;
 
 public class FileInputStreamBufferedReader implements Readable, Closeable {
-  //to be honest I didn't know what to do
-  //so it may be absolutely wrong
-  //but I do not have any other idea right now
+  //corrected
 
-  private final String text;
+  private final BufferedReader reader;
 
   public FileInputStreamBufferedReader(File file) throws FileNotFoundException {
-    String possibleText = null;
-    try {
-      Scanner myReader = new Scanner(file);
-      while (myReader.hasNextLine()) {
-        String data = myReader.nextLine();
-        if(possibleText == null)
-          possibleText = "";
-        possibleText += data;
-      }
-      myReader.close();
-    } catch (FileNotFoundException e) {
-      e.printStackTrace();
-    }
-    this.text = possibleText;
+    FileInputStream fis = new FileInputStream(file);
+    InputStreamReader isr = new InputStreamReader(fis);
+    this.reader =  new BufferedReader(isr);
   }
 
   public String readText() throws IOException {
-    if(text == null)
-    throw new IOException();
-    return this.text;
+      StringBuilder sb = new StringBuilder();
+      while(true){
+        String line = reader.readLine();
+        if(line == null)
+          break;
+        sb.append(line).append("\n");
+      }
+      return sb.toString();
   }
 
   @Override
   public void close() throws IOException {
-
+      this.reader.close();
   }
 
   @Override
   public int read(CharBuffer cb) throws IOException {
-    return 0;
+    return this.reader.read(cb);
   }
 }
