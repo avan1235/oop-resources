@@ -2,10 +2,12 @@ package pl.edu.mimuw;
 
 import pl.edu.mimuw.resources.*;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+
 public class Main {
 
   public static void main(String[] args) throws Exception {
-    // Catching my A-D exceptions:
     //task1();
 
     //task21();
@@ -13,12 +15,27 @@ public class Main {
     //task23();
     //task24();
 
-    // Call to a method below can throw checked Exception,
-    // so main() must be able to do that as well or try-catch it, but
-    // Exception is too inclusive, so the latter might not be a good idea.
+    /*
+     * Call to a method below can throw checked Exception,
+     * so main() must be able to do that as well or try-catch it, but
+     * Exception is too inclusive, so the latter might not be a good idea.
+     */
     //task25();
 
-    task26();
+    //task26();
+
+    // try-with-resources
+    File beautyOfLife = new File("beauty.txt");
+    try (FileInputStreamBufferedReader reader = new FileInputStreamBufferedReader(beautyOfLife)) {
+      System.out.println(reader.readText());
+    }
+
+    File iDontExist = new File("oops.txt");
+    try (FileInputStreamBufferedReader reader = new FileInputStreamBufferedReader(iDontExist)) {
+      System.out.println(reader.readText());
+    } catch (FileNotFoundException e) {
+      e.printStackTrace();
+    }
   }
 
   private static void task1() {
@@ -61,9 +78,8 @@ public class Main {
 
   private static void task23() {
     /*
-     * After rethrowing e, both printed and JVM stacktrace
-     * are identical. It makes sense, since stacktrace of e
-     * is not modified in any way after being caught.
+     * After rethrowing e, JVM stacktrace mentions thread in which
+     * the exception was thrown whereas printed stacktrace does not.
      */
     try {
       StringUtils.printLength(null);
