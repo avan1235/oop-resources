@@ -1,7 +1,8 @@
 package pl.edu.mimuw.rethrowing;
 
 public final class Task2_1 {
-  private Task2_1() { }
+  private Task2_1() {
+  }
 
   /**
    * The program will crash with NullPointerException.
