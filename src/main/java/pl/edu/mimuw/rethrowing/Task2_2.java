@@ -1,7 +1,8 @@
 package pl.edu.mimuw.rethrowing;
 
 public final class Task2_2 {
-  private Task2_2() { }
+  private Task2_2() {
+  }
 
   /**
    * The program will not crash and will print the stack trace of the exception.

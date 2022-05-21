@@ -1,7 +1,8 @@
 package pl.edu.mimuw.rethrowing;
 
 public final class Task2_4 {
-  private Task2_4() { }
+  private Task2_4() {
+  }
 
   /**
    * The program will crash with NullPointerException. After using the method fillInStackTrace() on the exception,
