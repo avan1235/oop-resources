@@ -6,8 +6,8 @@ public class RandomExceptionUtils {
 
   private static Random RANDOM = new Random();
 
-  public static void justThrow() throws AbstractException{
-    switch (RANDOM.nextInt(4)){
+  public static void justThrow() throws AbstractException {
+    switch (RANDOM.nextInt(4)) {
       case 0:
         throw new ExceptionA("A");
       case 1:
