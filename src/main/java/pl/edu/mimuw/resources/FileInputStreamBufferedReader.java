@@ -27,7 +27,7 @@ public class FileInputStreamBufferedReader implements Readable, Closeable
 	@Override
 	public int read(CharBuffer cb) throws IOException
 	{
-		return bufferedReader.read();
+		return bufferedReader.read(cb);
 	}
 
 	public String readWholeFile() throws IOException
