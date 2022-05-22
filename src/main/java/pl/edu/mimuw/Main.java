@@ -1,7 +1,5 @@
 package pl.edu.mimuw;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+  import java.io.File;
 
 import pl.edu.mimuw.resources.*;
 
@@ -10,9 +8,16 @@ public class Main {
     System.out.println(s.length());
   }
   public static void main(String[] args) throws ExceptionA {
-    //Worked on absolute path, however I didn't manage to make it relative
-    //task3(new File(Absolute path to text.txt));
-    task3(new File("ThisPathDoesNotExist"));
+    var file = new File("Invalid path");
+    try (
+      FileInputStreamBufferedReader bufferedReader = new FileInputStreamBufferedReader(file);
+    ) 
+    {
+      System.out.println(bufferedReader.readText());
+    }
+    catch (Exception e) {
+      e.printStackTrace();
+    } 
   }
 
   private static void task1() {
@@ -80,23 +85,6 @@ public class Main {
     }
     catch (NullPointerException e) {
       throw new ExceptionA("test");
-    }
-  }
-
-  private static void task3(File file) {
-    try (
-      FileInputStreamBufferedReader bufferedReader = new FileInputStreamBufferedReader(file);
-    ) 
-    {
-      System.out.println(bufferedReader.readText());
-    }
-    catch (FileNotFoundException e) {
-      System.out.println("File not found exception");
-      e.printStackTrace();
-    } 
-    catch (IOException e) {
-      System.out.println("IO exception");
-      e.printStackTrace();
     }
   }
 

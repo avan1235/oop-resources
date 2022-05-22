@@ -10,13 +10,9 @@ import java.nio.CharBuffer;
 
 public class FileInputStreamBufferedReader implements Readable, Closeable {
     private FileInputStream fileStream;
-    
     public FileInputStreamBufferedReader(File file) throws IOException {
         fileStream = new FileInputStream(file);
     } 
-    
-
-  
     public String readText() throws IOException {
       try(
         InputStreamReader reader = new InputStreamReader(fileStream);
@@ -32,16 +28,10 @@ public class FileInputStreamBufferedReader implements Readable, Closeable {
           return resultString.toString();
       }
     }
-
-
-
     @Override
     public void close() throws IOException {
         this.fileStream.close();
     }
-
-
-
     @Override
     public int read(CharBuffer charBuffer) throws IOException {
         charBuffer.append(this.readText());
