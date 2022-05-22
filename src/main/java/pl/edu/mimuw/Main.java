@@ -1,35 +1,33 @@
 package pl.edu.mimuw;
 
-import java.util.function.Consumer;
-import java.io.FileReader;
-import java.io.BufferedReader;
 import pl.edu.mimuw.resources.*;
-
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.File;
+// import static pl.edu.mimuw.resources.Task26Exceptions.*;
 public class Main {
 
   public static void main(String[] args) throws Exception{
     // task1();
-    task2();
-
-    FileReader fr = new FileReader(".");
-    BufferedReader br = new BufferedReader(fr);
-    try{
-      System.out.println(br.readLine());
-    } catch (NullPointerException e) {
-
-    } finally {
-      br.close();
-      fr.close();
+    // task2();
+    try(var filereader = new FileInputStreamBufferedReader(new File("tekst.txt"));){
+      System.out.println(filereader.readText());
+      filereader.close();
+    }catch(FileNotFoundException e){
+      System.out.println(e);
+    }catch(IOException e){
+      System.out.println(e);
     }
   }
 
   private static void task2() throws Exception {
-    // task21();
-    // task22();
-    // task23();
-    // task24();
-    // task25();
-    task26();
+    // task21(); - Throws NullPointerException.
+    // task22(); - Prints exactly the same stack as in task21, doesn't throw an exception.
+    // task23(); - Thrown and printed stacks are the same.
+    // task24(); - Thrown stack shows up only up to the place of rethrowing, printed is the same as in task22.
+    // task25(); - Stacks are the same as in task24, but exception is of class Exception, not NullPointerException.
+    // task26(); - Stacks are the same as in task25, but it also informs of cause being the NullPointerException 
+    //             (with the stack same as the thrown Exception.)
   }
 
   private static void task1() {
@@ -47,58 +45,6 @@ public class Main {
     } catch (ExceptionD e) {
       System.out.println("d");
       System.out.println(e);
-    }
-  }
-
-  private static void task21() {
-    StringUtils.printLength(null);
-  }
-
-  private static void task22() {
-    try {
-      StringUtils.printLength(null);
-    } catch (NullPointerException e) {
-      e.printStackTrace();
-      System.out.println(e);
-    }
-  }
-
-  private static void task23() {
-    try {
-      StringUtils.printLength(null);
-    } catch (NullPointerException e) {
-      e.printStackTrace();
-      throw e;
-    }
-  }
-
-  private static void task24() {
-    try {
-      StringUtils.printLength(null);
-    } catch (NullPointerException e) {
-      e.printStackTrace();
-      e.fillInStackTrace();
-      throw e;
-    }
-  }
-
-  private static void task25() throws Exception{
-    try {
-      StringUtils.printLength(null);
-    } catch (NullPointerException e) {
-      e.printStackTrace();
-      e.fillInStackTrace();
-      throw new Exception();
-    }
-  }
-
-  private static void task26() throws Exception {
-    try {
-      StringUtils.printLength(null);
-    } catch (NullPointerException e) {
-      e.printStackTrace();
-      e.fillInStackTrace();
-      throw new Exception(e);
     }
   }
 

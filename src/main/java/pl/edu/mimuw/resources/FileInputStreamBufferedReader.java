@@ -3,26 +3,30 @@ import java.io.*;
 import java.nio.CharBuffer;
 
 public class FileInputStreamBufferedReader implements Readable, Closeable {
+    private FileInputStream input;
+    private InputStreamReader inputStreamReader;
+    private BufferedReader bufferedReader;
 
-    public FileInputStreamBufferedReader(File file) throws FileNotFoundException {
-        InputStreamReader inputStreamReader = new InputStreamReader();
-        BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-        bufferedReader.close();
+    public FileInputStreamBufferedReader(File file) throws FileNotFoundException, IOException {
+        input = new FileInputStream(file);
+        inputStreamReader = new InputStreamReader(input);
+        bufferedReader = new BufferedReader(inputStreamReader);
     }
 
     public String readText() throws IOException {
-        throw new IllegalStateException("TODO");
+        StringBuilder sb = new StringBuilder();
+        bufferedReader.lines().forEach(arg0->sb.append(arg0).append("\n"));
+        return sb.toString();
     }
 
     @Override
     public void close() throws IOException {
-        // TODO Auto-generated method stub
+        bufferedReader.close();
         
     }
 
     @Override
     public int read(CharBuffer arg0) throws IOException {
-        // TODO Auto-generated method stub
-        return 0;
+        return inputStreamReader.read(arg0);    
     }
 }
