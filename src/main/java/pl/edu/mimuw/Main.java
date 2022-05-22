@@ -3,6 +3,7 @@ package pl.edu.mimuw;
 import pl.edu.mimuw.resources.*;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 
 public class Main
@@ -11,12 +12,11 @@ public class Main
 	public static void main(String[] args) throws Exception
 	{
 //		task1();
-//		task2();
+		task2();
 
-		try (FileReader fr = new FileReader("."))
+		try (FileInputStreamBufferedReader fileInputStreamBufferedReader = new FileInputStreamBufferedReader(new File("README.md")))
 		{
-			BufferedReader br = new BufferedReader(fr);
-			System.out.println(br.readLine());
+			System.out.println(fileInputStreamBufferedReader.readWholeFile());
 		}
 	}
 	private static void task1()
@@ -50,14 +50,14 @@ public class Main
 	private static void task2() throws Exception
 	{
 //		task21();
-//		task22();
+		task22();
 //		task23();
 //		task24();
 //		task25();
-		task26();
+//		task26();
 	}
 
-	private static void task21()
+	private static void task21() //NullPointerException
 	{
 		StringUtils.printLength(null);
 	}
@@ -74,7 +74,7 @@ public class Main
 		}
 	}
 
-	private static void task23()
+	private static void task23() //stacktrace'y są identyczne
 	{
 		try
 		{
@@ -87,7 +87,7 @@ public class Main
 		}
 	}
 
-	private static void task24()
+	private static void task24() //teraz stacktrace'y się różnią od siebie
 	{
 		try
 		{
@@ -101,7 +101,7 @@ public class Main
 		}
 	}
 
-	private static void task25() throws Exception
+	private static void task25() throws Exception //trzeba wszędzie wyżej dopisać throws Exception
 	{
 		try
 		{
@@ -115,7 +115,7 @@ public class Main
 		}
 	}
 
-	private static void task26() throws Exception
+	private static void task26() throws Exception //teraz stacktrace jest pusty z jakiegoś powodu
 	{
 		try
 		{
