@@ -1,0 +1,7 @@
+Pierwsza linijka tekstu.
+
+Przerwa.
+
+Kolejna linijka.
+
+Koniec!
