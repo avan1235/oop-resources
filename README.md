@@ -45,6 +45,6 @@ public class FileInputStreamBufferedReader implements Readable, Closeable {
 
 ```
 that will use `BufferedReader`, `InputStreamReader` and `FileInputStream` to read from file
-and will be able to read the full text file of the file and return it at once method call.
-
+`and will be able to read the full text file of the file and return it at once method call.
+`
 Show in `main` how to use your class for reading text file in **try-with-resources** manner.

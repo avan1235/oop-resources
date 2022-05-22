@@ -7,7 +7,7 @@ public class RandomExceptionUtils {
   private static Random RANDOM = new Random();
 
   public static void justThrow() throws AbstractException {
-    switch(RANDOM.nextInt(4)) {
+    switch (RANDOM.nextInt(4)) {
       case 0: {
         throw new ExceptionA("A");
       }
@@ -18,7 +18,7 @@ public class RandomExceptionUtils {
         throw new ExceptionC("C");
       }
       default: {
-        throw  new ExceptionD("D");
+        throw new ExceptionD("D");
       }
     }
   }
